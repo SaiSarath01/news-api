@@ -8,8 +8,29 @@ function main(){
     app.use(cors())
 
     app.get('/', async (req,res,next) => {
-        let response = await fetch('https://lobste.rs/hottest.json');
-        return res.status(200).send(await response.json())
+        try {
+        
+            let response = await fetch('https://lobste.rs/active.json');
+            return res.status(200).send(await response.json())
+        } catch (error) {
+            return res.status(400).send({
+                message: "Service unavialable"
+            })
+        }
+
+    });
+
+    app.get('/recent', async (req,res,next) => {
+        try {
+        
+            let response = await fetch('https://lobste.rs/hottest.json');
+            return res.status(200).send(await response.json())
+        } catch (error) {   
+            return res.status(400).send({
+                message: "Service unavialable"
+            })
+        }
+
     })
 
     // app.use(router)
