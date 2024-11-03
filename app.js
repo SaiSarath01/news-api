@@ -10,7 +10,7 @@ function main(){
     app.get('/', async (req,res,next) => {
         try {
         
-            let response = await fetch('https://lobste.rs/active.json');
+            let response = await fetch('https://lobste.rs/newest.json');
             return res.status(200).send(await response.json())
         } catch (error) {
             return res.status(400).send({
